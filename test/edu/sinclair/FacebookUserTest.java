@@ -223,10 +223,7 @@ public class FacebookUserTest {
 		stringsSorted.add("DEF");
 		stringsSorted.add("HIJ");
 		
-		ArrayList<FacebookUser> fbUsers= new ArrayList<>();
-		fbUsers.add(new FacebookUser("Brett", "123"));
-		fbUsers.add(new FacebookUser("Doug", "345"));
-		fbUsers.add(new FacebookUser("Sinclair", "567"));
+	
 		
 		ArrayList<Integer> ints = new ArrayList<>();
 		ints.add(10);
@@ -237,5 +234,23 @@ public class FacebookUserTest {
 		Assert.assertTrue(strings.equals(stringsSorted));
 	}
 	
+
+	@Test
+	public void testquickSort() {
+		int[] ints = {2,3,2,5,6,1,-2,3,14,12};
+		
+		ArrayList<FacebookUser> fbUsers= new ArrayList<>();
+		fbUsers.add(new FacebookUser("Sinclair", "567"));
+		fbUsers.add(new FacebookUser("Brett", "123"));
+		fbUsers.add(new FacebookUser("Doug", "345"));
+		
+		FacebookUser[] toArray = fbUsers.toArray(new FacebookUser[fbUsers.size()]);
+		
+		Utilities.quickSort(toArray);
+		
+		for (FacebookUser user : toArray) {
+			System.out.println(user);
+		}
+	}
 	
 }
