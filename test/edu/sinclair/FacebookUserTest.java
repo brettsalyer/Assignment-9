@@ -237,7 +237,7 @@ public class FacebookUserTest {
 
 	@Test
 	public void testquickSort() {
-		int[] ints = {2,3,2,5,6,1,-2,3,14,12};
+		Integer[] ints = {2,3,2,5,6,1,-2,3,14,12};
 		
 		ArrayList<FacebookUser> fbUsers= new ArrayList<>();
 		fbUsers.add(new FacebookUser("Sinclair", "567"));
@@ -250,6 +250,11 @@ public class FacebookUserTest {
 		
 		for (FacebookUser user : toArray) {
 			System.out.println(user);
+		}
+		
+		Utilities.quickSort(ints);
+		for (Integer num : ints) {
+			System.out.println(num);
 		}
 	}
 	
