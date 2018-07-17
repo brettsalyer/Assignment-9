@@ -214,6 +214,7 @@ public class FacebookUserTest {
 	
 	@Test
 	public void testInsertionSort() {
+		//String data
 		ArrayList<String> strings = new ArrayList<>();
 		strings.add("ABC");
 		strings.add("HIJ");
@@ -224,20 +225,56 @@ public class FacebookUserTest {
 		stringsSorted.add("HIJ");
 		
 	
+		//Int data
+		ArrayList<Integer> intsOrig = new ArrayList<>();
+		intsOrig.add(10);
+		intsOrig.add(1);
+		intsOrig.add(14);
+		ArrayList<Integer> intsSorted = new ArrayList<>();
+		intsSorted.add(1);
+		intsSorted.add(10);
+		intsSorted.add(14);
+
+		//Facebook Data
+		ArrayList<FacebookUser> fbUsersOrig = new ArrayList<>();
+		fbUsersOrig.add(new FacebookUser("Sinclair", "567"));
+		fbUsersOrig.add(new FacebookUser("Brett", "123"));
+		fbUsersOrig.add(new FacebookUser("Doug", "345"));
 		
-		ArrayList<Integer> ints = new ArrayList<>();
-		ints.add(10);
-		ints.add(1);
-		ints.add(14);
+		ArrayList<FacebookUser> fbUsersSorted = new ArrayList<>();
+		fbUsersSorted.add(new FacebookUser("Brett", "123"));
+		fbUsersSorted.add(new FacebookUser("Doug", "345"));
+		fbUsersSorted.add(new FacebookUser("Sinclair", "567"));
+
 		
-		Utilities.insertionSort2(strings);
-		Assert.assertTrue(strings.equals(stringsSorted));
+		//Test Ints
+		Integer[] intsToArrayOrig = intsOrig.toArray(new Integer[intsOrig.size()]);
+		Integer[] intsToArraySorted = intsSorted.toArray(new Integer[intsSorted.size()]);
+
+		Utilities.insertionSort(intsToArrayOrig);
+		Assert.assertArrayEquals(intsToArrayOrig, intsToArraySorted);
+
+		//Test Strings
+		
+		String[] toArrayOrig = strings.toArray(new String[strings.size()]);
+		String[] toArraySorted = stringsSorted.toArray(new String[stringsSorted.size()]);
+
+		Utilities.insertionSort(toArrayOrig);
+		Assert.assertArrayEquals(toArrayOrig, toArraySorted);
+		
+		//Test FacebookUser
+		FacebookUser[] userToArrayOg = fbUsersOrig.toArray(new FacebookUser[fbUsersOrig.size()]);
+		FacebookUser[] userToArraySorted = fbUsersSorted.toArray(new FacebookUser[fbUsersSorted.size()]);
+
+		Utilities.insertionSort(userToArrayOg);
+		Assert.assertArrayEquals(userToArrayOg, userToArraySorted);
 	}
 	
 
 	@Test
 	public void testquickSort() {
-		Integer[] ints = {2,3,2,5,6,1,-2,3,14,12};
+		Integer[] ints = {2,3, 7, 5, 0};
+		Integer[] intsSorted = {0, 2, 3, 5, 7};
 		
 		ArrayList<FacebookUser> fbUsers= new ArrayList<>();
 		fbUsers.add(new FacebookUser("Sinclair", "567"));
@@ -246,16 +283,10 @@ public class FacebookUserTest {
 		
 		FacebookUser[] toArray = fbUsers.toArray(new FacebookUser[fbUsers.size()]);
 		
-		Utilities.quickSort(toArray);
-		
-		for (FacebookUser user : toArray) {
-			System.out.println(user);
-		}
-		
 		Utilities.quickSort(ints);
-		for (Integer num : ints) {
-			System.out.println(num);
-		}
+		
+		Assert.assertArrayEquals(intsSorted, ints);
+
 	}
 	
 }

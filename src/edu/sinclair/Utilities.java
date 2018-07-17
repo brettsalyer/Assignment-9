@@ -37,46 +37,22 @@ public class Utilities {
 		return found;
 	}
 
-	//Template
-	public static void insertionSortInt(int[] list) {
+	//Insertion Sort
+	public static  <T extends Comparable<T>> void insertionSort(T[] list) {
 		for (int i = 1; i < list.length; i++) {
-			int currentElement = list[i];
+			T currentElement = list[i];
 			int k;
-			for (k = i-1; k <= 0 && list[k] > currentElement; k--) {
+			for (k = i-1; k >= 0 && list[k].compareTo(currentElement) > 0; k--) {
 				list[k+1] = list[k];
 			}
 			list[k+1] = currentElement;
 		}
 	}
 	
-	public  <T extends Comparable<T>> void insertionSort(ArrayList<T> list) {
 	
-		for (int i = 1; i < list.size(); i++) {
-			for (int j = i; j > 0; j--) {
-				if(list.get(j-1).compareTo(list.get(j)) > 0) {
-					T element = list.get(j-1);
-					list.get(j-1).equals(list.get(j));
-					list.get(j).equals(element);
-				}
-			}
-		}
-	}
-	
-	public static  <T extends Comparable<T>> void insertionSort2(ArrayList<T> list) {
-		
-		for (int i = 1; i < list.size(); i++) {
-			T currentElement = list.get(i);
-			int k;
-			for (k = i-1; k <= 0 && list.get(i).compareTo(currentElement) == 1 ; k--) {
-					list.get(k+1).equals(list.get(k));
-			}
-			list.get(k+1).equals(currentElement);
-
-			}
-		}
 	//Sort
-	public static <T> void quickSort(T[] list) {
-		
+	public static <T extends Comparable<T>> void quickSort(T[] list) {
+		quickSort(list, 0, list.length - 1);
 	}
 	//Helper
 	public static <T extends Comparable<T>> void quickSort(T[] list, int first, int last) {
@@ -84,10 +60,10 @@ public class Utilities {
 			int pivotIndex = partition(list, first, last);
 			quickSort(list, first, pivotIndex-1);
 			quickSort(list, pivotIndex+1, last);
-
 		}
 	}
 	
+	//Partition
 	public static <T extends Comparable<T>> int partition(T[] list, int first, int last) {
 		T pivot = list[first]; //Pivot is first element
 		int low = first + 1;
@@ -95,11 +71,11 @@ public class Utilities {
 		
 		while(high > low) {
 			//Search from left to right
-			while(low <= high && list[low].compareTo(pivot) < 0) {
+			while(low <= high && list[low].compareTo(pivot) >= 0) {
 				low++;
 			}
 			//Search from right to left
-			while (low <= high && list[high].compareTo(pivot) > 0) {
+			while (low <= high && list[high].compareTo(pivot) < 0) {
 				high--;
 			}
 			
@@ -111,7 +87,7 @@ public class Utilities {
 			}
 		}
 		
-		while ( high > low && list[high].compareTo(pivot) > 0) {
+		while ( high > low && list[high].compareTo(pivot) <= 0) {
 			high--;
 		}
 		
